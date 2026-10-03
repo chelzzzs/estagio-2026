@@ -39,7 +39,7 @@ export const pontos: Ponto[] = [
     y: 39.5,
     lado: "direita",
     largura: "54rem",
-    celular: { x: 30, y: 45 },
+    celular: { x: 33, y: 45 },
   },
   {
     id: "projetos",

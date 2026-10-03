@@ -133,7 +133,7 @@ function Cartao({ titulo, nota, children, className = "" }: { titulo: string; no
 export function Numeros() {
   return (
     <>
-      <p className="legenda">Passe o mouse nos gráficos para ver os valores</p>
+      <p className="legenda">Toque ou passe o mouse nos gráficos para ver os valores</p>
 
       <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {destaquesNumericos.map((d) => (
