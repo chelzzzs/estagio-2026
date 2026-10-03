@@ -47,7 +47,7 @@ export function Quarto() {
             onFechar={() => setAberto(null)}
           >
             <motion.div
-              className="p-6 pt-7 md:p-10"
+              className="p-5 pt-6 sm:p-6 sm:pt-7 md:p-10"
               initial={{ opacity: 0 }}
               animate={{
                 opacity: 1,

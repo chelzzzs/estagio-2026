@@ -12,7 +12,7 @@ export function CartaoTexto({ children }: { children: ReactNode }) {
       radius={22}
       tiltMax={6}
       hoverScale={1.02}
-      front={<div className="size-full rounded-[inherit] border border-white/10 px-6 py-8 md:px-10 md:py-10">{children}</div>}
+      front={<div className="size-full rounded-[inherit] border border-white/10 px-5 py-6 sm:px-6 sm:py-8 md:px-10 md:py-10">{children}</div>}
     />
   );
 }

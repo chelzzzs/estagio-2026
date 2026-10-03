@@ -122,7 +122,7 @@ const totalBeneficiados = beneficiados.reduce((soma, f) => soma + f.valor, 0);
 
 function Cartao({ titulo, nota, children, className = "" }: { titulo: string; nota: string; children: React.ReactNode; className?: string }) {
   return (
-    <article className={`min-w-0 rounded-[22px] border border-white/10 bg-white/[0.04] p-5 md:p-6 ${className}`}>
+    <article className={`min-w-0 rounded-[22px] border border-white/10 bg-white/[0.04] p-4 sm:p-5 md:p-6 ${className}`}>
       <h3 className="text-[1.05rem] font-medium">{titulo}</h3>
       <p className="legenda mt-1">{nota}</p>
       <div className="mt-4 min-w-0">{children}</div>
@@ -137,7 +137,7 @@ export function Numeros() {
 
       <ul className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {destaquesNumericos.map((d) => (
-          <li key={d.rotulo} className="rounded-[22px] border border-white/10 bg-white/[0.04] p-5 md:p-6">
+          <li key={d.rotulo} className="rounded-[22px] border border-white/10 bg-white/[0.04] p-4 sm:p-5 md:p-6">
             <p className="font-jp text-[clamp(2.6rem,5vw,4rem)] leading-none text-accent">{d.valor}</p>
             <p className="mt-3 text-[0.95rem] font-medium leading-snug">{d.rotulo}</p>
             <p className="legenda mt-1">{d.nota}</p>

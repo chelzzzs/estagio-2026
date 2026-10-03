@@ -35,8 +35,15 @@ function Marcador({
 
   return (
     <div
-      className="absolute"
-      style={{ left: `${ponto.x}%`, top: `${ponto.y}%` }}
+      className="absolute left-[var(--x-celular)] top-[var(--y-celular)] sm:left-[var(--x)] sm:top-[var(--y)]"
+      style={
+        {
+          "--x": `${ponto.x}%`,
+          "--y": `${ponto.y}%`,
+          "--x-celular": `${ponto.celular?.x ?? ponto.x}%`,
+          "--y-celular": `${ponto.celular?.y ?? ponto.y}%`,
+        } as CSSProperties
+      }
     >
       <button
         type="button"
@@ -64,9 +71,9 @@ function Marcador({
             {ponto.numero}
           </span>
           <span
-            className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-white/10 bg-[#120d09]/78 px-4 py-2 text-left transition-colors group-hover:bg-[#120d09]/92 ${esquerda ? "right-full mr-3" : "left-full ml-3"}`}
+            className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/10 bg-[#120d09]/78 px-3 py-1.5 text-center transition-colors group-hover:bg-[#120d09]/92 sm:top-1/2 sm:mt-0 sm:-translate-y-1/2 sm:translate-x-0 sm:px-4 sm:py-2 sm:text-left ${esquerda ? "sm:left-auto sm:right-full sm:mr-3" : "sm:left-full sm:ml-3"}`}
           >
-            <span className="block text-[0.95rem] font-medium leading-tight text-ink">
+            <span className="block text-[0.85rem] font-medium leading-tight text-ink sm:text-[0.95rem]">
               {ponto.nome}
             </span>
             <span className="legenda hidden leading-tight sm:block">

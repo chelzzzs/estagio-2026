@@ -183,7 +183,7 @@ export function Projetos() {
 
   return (
     <>
-      <p className="legenda">Arraste para virar · clique para abrir</p>
+      <p className="legenda">Arraste para virar · toque ou clique para abrir</p>
       <div className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
         {projetos.map((projeto) => (
           <FlipCard

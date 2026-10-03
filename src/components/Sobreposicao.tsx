@@ -41,7 +41,7 @@ export function Sobreposicao({ origem, rotulo, largura = "64rem", onFechar, chil
   const fora = origem ? { opacity: 0, scale: origem.escala, x: origem.x, y: origem.y } : { opacity: 0, scale: 0.96, x: 0, y: 16 };
 
   return createPortal(
-    <div className="fixed inset-0 z-50 grid place-items-center p-4">
+    <div className="fixed inset-0 z-50 grid place-items-center p-3 sm:p-4">
       <motion.div
         className="absolute inset-0 bg-[#0b0806]/55 backdrop-blur-[3px]"
         initial={{ opacity: 0 }}

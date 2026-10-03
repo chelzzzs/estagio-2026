@@ -11,6 +11,7 @@ export type Ponto = {
   y: number;
   lado: "direita" | "esquerda";
   largura: string;
+  celular?: { x: number; y: number };
 };
 
 export const pontos: Ponto[] = [
@@ -25,6 +26,7 @@ export const pontos: Ponto[] = [
     y: 18.3,
     lado: "direita",
     largura: "80rem",
+    celular: { x: 49.9, y: 22 },
   },
   {
     id: "introducao",
@@ -37,6 +39,7 @@ export const pontos: Ponto[] = [
     y: 39.5,
     lado: "direita",
     largura: "54rem",
+    celular: { x: 30, y: 45 },
   },
   {
     id: "projetos",
