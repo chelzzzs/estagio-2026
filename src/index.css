@@ -102,6 +102,91 @@ section[id] {
   scroll-margin-top: 4rem;
 }
 
+.revelar,
+.surgir,
+.subir,
+.tracejar,
+.cena-entrada {
+  opacity: 0;
+}
+
+html[data-pronto] .cena-entrada {
+  animation: cena-entrada 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html[data-pronto] .revelar {
+  animation: revelar 1.2s cubic-bezier(0.22, 1, 0.36, 1) var(--atraso, 0s) both;
+}
+
+html[data-pronto] .surgir {
+  animation: surgir 0.8s cubic-bezier(0.34, 1.4, 0.64, 1) var(--atraso, 0s) both;
+}
+
+html[data-pronto] .subir {
+  animation: subir 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--atraso, 0s) both;
+}
+
+html[data-pronto] .tracejar {
+  animation: tracejar 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--atraso, 0s) both;
+}
+
+@keyframes cena-entrada {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes revelar {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(0.3em);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tracejar {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .zzz {
   opacity: 0;
   animation-name: zzz;
@@ -130,6 +215,11 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   .zzz {
     animation: none;
+  }
+
+  html[data-pronto] :is(.revelar, .surgir, .subir, .tracejar, .cena-entrada) {
+    animation: none;
+    opacity: 1;
   }
 
   html {

@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
+import type { CSSProperties } from "react";
 import escuridao from "../../assets/escuridao.png";
 import { areaLuminaria } from "../../data/cena";
 
@@ -34,7 +35,8 @@ export function Luminaria({ acesa, onAlternar }: { acesa: boolean; onAlternar: (
       <span className="absolute inset-[-8%] rounded-[45%] bg-[radial-gradient(closest-side,rgba(255,226,150,0.35),transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" />
       <span
         aria-hidden
-        className={`absolute left-1/2 top-0 grid size-9 -translate-x-1/2 -translate-y-[70%] place-items-center rounded-full border shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-[background-color,color,transform] duration-300 group-hover:scale-110 ${acesa ? "border-transparent bg-accent text-[#1a120c]" : "border-white/20 bg-[#120d09]/85 text-ink"}`}
+        style={{ "--atraso": "1.85s" } as CSSProperties}
+        className={`surgir absolute left-1/2 top-0 grid size-9 -translate-x-1/2 -translate-y-[70%] place-items-center rounded-full border shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-[background-color,color,transform] duration-300 group-hover:scale-110 ${acesa ? "border-transparent bg-accent text-[#1a120c]" : "border-white/20 bg-[#120d09]/85 text-ink"}`}
       >
         <AnimatePresence mode="wait" initial={false}>
           <motion.svg

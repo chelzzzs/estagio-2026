@@ -1,9 +1,10 @@
+import type { CSSProperties } from "react";
 import { pontos, type PontoId } from "../data/pontos";
 
 export function Indice({ onAbrir }: { onAbrir: (id: PontoId) => void }) {
   return (
     <nav aria-label="Índice" className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-2 pb-[max(1rem,env(safe-area-inset-bottom))]">
-      <ul className="pointer-events-auto flex border border-white/10 bg-[#120d09]/85 gap-0.5 rounded-full p-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] sm:gap-1">
+      <ul style={{ "--atraso": "1.5s" } as CSSProperties} className="subir pointer-events-auto flex border border-white/10 bg-[#120d09]/85 gap-0.5 rounded-full p-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] sm:gap-1">
         {pontos.map((p) => (
           <li key={p.id}>
             <button

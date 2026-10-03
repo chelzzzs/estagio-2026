@@ -5,7 +5,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import fundo from "../assets/fundo.webp";
 import { pontos, type Ponto, type PontoId } from "../data/pontos";
 import { Escuridao, Luminaria } from "./cena/Luz";
@@ -20,11 +20,13 @@ const PROPORCAO = 816 / 1440;
 
 function Marcador({
   ponto,
+  ordem,
   ativo,
   pausado,
   onAbrir,
 }: {
   ponto: Ponto;
+  ordem: number;
   ativo: boolean;
   pausado: boolean;
   onAbrir: (id: PontoId, origem: Origem) => void;
@@ -43,7 +45,8 @@ function Marcador({
         }
         aria-label={`${ponto.nome}: abrir`}
         aria-haspopup="dialog"
-        className="group pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+        className="surgir group pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+        style={{ "--atraso": `${1.2 + ordem * 0.12}s` } as CSSProperties}
       >
         <motion.span
           className="relative block"
@@ -110,7 +113,7 @@ export function Cena({
   const veu = useTransform(suave, [0, 0.1, 1], [0.14, 0.32, 0.4]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-bg">
+    <div className="cena-entrada pointer-events-none fixed inset-0 z-0 overflow-hidden bg-bg">
       <motion.div
         className="@container absolute left-1/2 top-0 -translate-x-1/2"
         style={{
@@ -141,8 +144,9 @@ export function Cena({
         <Soneca pausado={abertoId !== null} />
         <Luminaria acesa={acesa} onAlternar={() => setAcesa((v) => !v)} />
         <div className="absolute inset-0">
-          {pontos.map((ponto) => (
+          {pontos.map((ponto, ordem) => (
             <Marcador
+              ordem={ordem}
               key={ponto.id}
               ponto={ponto}
               ativo={abertoId === ponto.id}
