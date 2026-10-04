@@ -107,10 +107,10 @@ function Detalhe({
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
+        initial={{ opacity: 0, transform: "translateY(12px)" }}
         animate={{
           opacity: 1,
-          y: 0,
+          transform: "translateY(0px)",
           transition: { delay: 0.12, duration: 0.35 },
         }}
         exit={{ opacity: 0, transition: { duration: 0.1 } }}

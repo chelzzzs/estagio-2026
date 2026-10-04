@@ -7,6 +7,7 @@ import { tooltip } from "@tanstack/charts/tooltip";
 import { scaleLinear, scalePoint } from "d3-scale";
 import { curveMonotoneX } from "d3-shape";
 import type { CSSProperties } from "react";
+import { usePainelPronto } from "./Sobreposicao";
 import { beneficiados, chamadosPorMes, commitsPorMes, coresBeneficiados, destaquesNumericos, type Fatia, type PontoMensal } from "../data/numeros";
 
 const ACCENT = "#e9a85a";
@@ -131,6 +132,8 @@ function Cartao({ titulo, nota, children, className = "" }: { titulo: string; no
 }
 
 export function Numeros() {
+  const pronto = usePainelPronto();
+
   return (
     <>
       <p className="legenda">Toque ou passe o mouse nos gráficos para ver os valores</p>
@@ -147,13 +150,13 @@ export function Numeros() {
 
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <Cartao titulo="Chamados por mês" nota="Abril a julho · rotação pelas áreas">
-          <div style={estiloTooltip}>
-            <RendererChart definition={chamados} renderer={renderizador} height={240} ariaLabel="Chamados por mês: abril 12, maio 23, junho 35, julho 20" />
+          <div className="h-[240px]" style={estiloTooltip}>
+            {pronto && <RendererChart definition={chamados} renderer={renderizador} height={240} ariaLabel="Chamados por mês: abril 12, maio 23, junho 35, julho 20" />}
           </div>
         </Cartao>
         <Cartao titulo="Ritmo no desenvolvimento" nota="Commits por mês · julho a setembro">
-          <div style={estiloTooltip}>
-            <RendererChart definition={commits} renderer={renderizador} height={240} ariaLabel="Commits por mês: julho 18, agosto 43, setembro 115" />
+          <div className="h-[240px]" style={estiloTooltip}>
+            {pronto && <RendererChart definition={commits} renderer={renderizador} height={240} ariaLabel="Commits por mês: julho 18, agosto 43, setembro 115" />}
           </div>
         </Cartao>
       </div>
@@ -161,7 +164,7 @@ export function Numeros() {
       <Cartao titulo="Quem foi beneficiado" nota="Entregas por estabelecimento · abril a junho" className="mt-4">
         <div className="grid items-center gap-8 md:grid-cols-[minmax(0,18rem)_1fr]">
           <div className="relative mx-auto aspect-square w-full max-w-[18rem]" style={estiloTooltip}>
-            <RendererChart definition={rosca} renderer={renderizador} aspectRatio={1} ariaLabel="Entregas por estabelecimento: IOP 10, Corporativo 5, Grupo todo 4, Santé 1" />
+            {pronto && <RendererChart definition={rosca} renderer={renderizador} aspectRatio={1} ariaLabel="Entregas por estabelecimento: IOP 10, Corporativo 5, Grupo todo 4, Santé 1" />}
             <div className="pointer-events-none absolute inset-0 grid place-items-center text-center">
               <div>
                 <p className="font-jp text-[2.4rem] leading-none">{totalBeneficiados}</p>

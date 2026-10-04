@@ -187,6 +187,34 @@ html[data-pronto] .tracejar {
   }
 }
 
+.flutuar {
+  animation: flutuar var(--flutuar-duracao, 4s) ease-in-out var(--flutuar-atraso, 0s) infinite;
+}
+
+@keyframes flutuar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--flutuar-amplitude, 4%) * -1));
+  }
+}
+
+.pulsar {
+  animation: pulsar 2.4s ease-in-out var(--pulsar-atraso, 0s) infinite;
+}
+
+@keyframes pulsar {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
 .zzz {
   opacity: 0;
   animation-name: zzz;
@@ -213,7 +241,9 @@ html[data-pronto] .tracejar {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .zzz {
+  .zzz,
+  .flutuar,
+  .pulsar {
     animation: none;
   }
 

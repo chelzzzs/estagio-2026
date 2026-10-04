@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import type { CSSProperties } from "react";
 import { Camada, Flutuar } from "./Paralaxe";
 
 const TRACO = "#ece6dc";
@@ -23,7 +23,7 @@ export function SegurancaIlustracao() {
 
       <Camada profundidade={0.4} className="left-[10%] top-1/2 w-[30%] -translate-y-1/2">
         <Flutuar amplitude={3} duracao={5}>
-          <Escudo className="w-full drop-shadow-[0_3cqw_5cqw_rgba(0,0,0,0.5)]" />
+          <Escudo className="w-full" />
         </Flutuar>
       </Camada>
 
@@ -34,15 +34,14 @@ export function SegurancaIlustracao() {
               key={texto}
               className="flex items-center gap-[2cqw] rounded-[2cqw] border border-white/10 bg-[#0d0b09]/85 px-[3cqw] py-[2.4cqw] shadow-[0_3cqw_6cqw_-2cqw_rgba(0,0,0,0.6)]"
             >
-              <motion.span
-                className="grid size-[4.4cqw] shrink-0 place-items-center rounded-full bg-white/10"
-                animate={{ scale: [1, 1.12, 1] }}
-                transition={{ duration: 2.4, delay: i * 0.5, repeat: Infinity, ease: "easeInOut" }}
+              <span
+                className="pulsar grid size-[4.4cqw] shrink-0 place-items-center rounded-full bg-white/10"
+                style={{ "--pulsar-atraso": `${i * 0.5}s` } as CSSProperties}
               >
                 <svg viewBox="0 0 24 24" className="w-[2.6cqw]" fill="none" stroke={TRACO} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="m5 12.5 4.5 4.5L19 7.5" />
                 </svg>
-              </motion.span>
+              </span>
               <span className="text-[2.6cqw] leading-tight text-[#ece6dc]">{texto}</span>
             </li>
           ))}

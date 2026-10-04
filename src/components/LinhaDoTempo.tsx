@@ -1,6 +1,7 @@
 import { animate, motion, useMotionValue, useTransform, type MotionValue } from "motion/react";
 import { useEffect } from "react";
 import { etapas } from "../data/rotacao";
+import { usePainelPronto } from "./Sobreposicao";
 
 type Lado = "cima" | "cimaEsquerda" | "baixo" | "cume";
 
@@ -73,6 +74,8 @@ function Mapa({ progresso }: { progresso: MotionValue<number> }) {
         <path d={MONTANHA} fill="rgba(20,15,11,0.92)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinejoin="round" />
         <path d={NEVE} fill="rgba(244,243,239,0.85)" />
         <path d={CAMINHO} fill="none" stroke="rgba(244,243,239,0.35)" strokeWidth="3" strokeDasharray="2 12" strokeLinecap="round" />
+      </svg>
+      <svg viewBox={`0 0 ${LARGURA} ${ALTURA}`} className="absolute inset-0 size-full overflow-visible" style={{ willChange: "transform" }} aria-hidden>
         <motion.path d={CAMINHO} fill="none" stroke={ACCENT} strokeWidth="4" strokeLinecap="round" style={{ pathLength: progresso }} />
         {MARCOS.map((m, i) => (
           <Marco key={i} {...m} progresso={progresso} cume={i === MARCOS.length - 1} />
@@ -101,10 +104,13 @@ function Mapa({ progresso }: { progresso: MotionValue<number> }) {
 export function LinhaDoTempo() {
   const progresso = useMotionValue(0);
 
+  const pronto = usePainelPronto();
+
   useEffect(() => {
-    const controle = animate(progresso, 1, { duration: 2.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] });
+    if (!pronto) return;
+    const controle = animate(progresso, 1, { duration: 2, ease: [0.22, 1, 0.36, 1] });
     return () => controle.stop();
-  }, [progresso]);
+  }, [pronto, progresso]);
 
   return (
     <>

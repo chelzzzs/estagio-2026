@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
-import { createContext, useContext, type PointerEvent, type ReactNode } from "react";
+import { type CSSProperties, createContext, useContext, type PointerEvent, type ReactNode } from "react";
 
 type Eixos = { x: MotionValue<number>; y: MotionValue<number> };
 
@@ -44,12 +44,11 @@ export function Camada({ profundidade, className, children }: { profundidade: nu
 
 export function Flutuar({ amplitude = 4, duracao = 4, atraso = 0, children, className }: { amplitude?: number; duracao?: number; atraso?: number; children: ReactNode; className?: string }) {
   return (
-    <motion.div
-      className={className}
-      animate={{ y: [`0%`, `-${amplitude}%`, `0%`] }}
-      transition={{ duration: duracao, delay: atraso, repeat: Infinity, ease: "easeInOut" }}
+    <div
+      className={`flutuar ${className ?? ""}`}
+      style={{ "--flutuar-amplitude": `${amplitude}%`, "--flutuar-duracao": `${duracao}s`, "--flutuar-atraso": `${atraso}s` } as CSSProperties}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

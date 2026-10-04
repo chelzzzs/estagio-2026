@@ -22,8 +22,8 @@ export function Comparador({ antes, agora, nome }: { antes: string; agora: strin
         </span>
       </div>
 
-      <span className="vidro legenda pointer-events-none absolute left-3 top-3 rounded-full px-3 py-1 text-ink">Primeira versão</span>
-      <span className="vidro legenda pointer-events-none absolute right-3 top-3 rounded-full px-3 py-1 text-ink">Versão atual</span>
+      <span className="legenda pointer-events-none absolute left-3 top-3 rounded-full border border-white/10 bg-[#120d09]/85 px-3 py-1 text-ink">Primeira versão</span>
+      <span className="legenda pointer-events-none absolute right-3 top-3 rounded-full border border-white/10 bg-[#120d09]/85 px-3 py-1 text-ink">Versão atual</span>
 
       <input
         type="range"
