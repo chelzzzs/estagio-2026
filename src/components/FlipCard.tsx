@@ -107,6 +107,9 @@ export function FlipCard({
   const turnY = useMotionTemplate`perspective(${perspective}px) scale(${lift}) rotateX(${tiltX}deg) rotateY(${sumY}deg)`;
   const turnX = useMotionTemplate`perspective(${perspective}px) scale(${lift}) rotateY(${tiltY}deg) rotateX(${sumX}deg)`;
   const facing = useTransform(turn, (t) => Math.abs(Math.cos((t * Math.PI) / 180)));
+  const giro = axis === "x" ? sumX : sumY;
+  const frenteVisivel = useTransform(giro, (g) => (Math.cos((g * Math.PI) / 180) >= 0 ? "visible" : "hidden"));
+  const versoVisivel = useTransform(giro, (g) => (Math.cos((g * Math.PI) / 180) < 0 ? "visible" : "hidden"));
   const spread = useTransform(facing, (f) => 0.08 + 0.92 * f);
   const shade = useTransform(facing, (f) => 0.1 + 0.9 * f * f);
   const gxPct = useMotionTemplate`${gx}%`;
@@ -294,14 +297,14 @@ export function FlipCard({
         />
       ) : null}
       <motion.div className="flip-card__rotor" style={reduce ? undefined : rotorStyle}>
-        <div className="flip-card__face flip-card__face--front" aria-hidden={shown} inert={shown}>
+        <motion.div className="flip-card__face flip-card__face--front" aria-hidden={shown} inert={shown} style={reduce ? undefined : { visibility: frenteVisivel }}>
           {front}
           {glare ? <span className="flip-card__glare" aria-hidden="true" /> : null}
-        </div>
-        <div className="flip-card__face flip-card__face--back" aria-hidden={!shown} inert={!shown}>
+        </motion.div>
+        <motion.div className="flip-card__face flip-card__face--back" aria-hidden={!shown} inert={!shown} style={reduce ? undefined : { visibility: versoVisivel }}>
           {back}
           {glare ? <span className="flip-card__glare" aria-hidden="true" /> : null}
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );

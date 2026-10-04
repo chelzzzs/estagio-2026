@@ -50,6 +50,8 @@ function Frente({ projeto }: { projeto: Projeto }) {
   );
 }
 
+const DETALHES_NO_VERSO = 3;
+
 function Verso({ projeto }: { projeto: Projeto }) {
   return (
     <div
@@ -64,14 +66,17 @@ function Verso({ projeto }: { projeto: Projeto }) {
         {projeto.descricao}
       </p>
       <ul className="mt-4 flex flex-col gap-2 border-t border-line pt-4 text-[0.85rem] leading-snug">
-        {projeto.detalhes.map((item) => (
+        {projeto.detalhes.slice(0, DETALHES_NO_VERSO).map((item) => (
           <li key={item} className="flex gap-2.5">
             <span className="mt-[0.5em] size-1.5 shrink-0 rounded-full bg-accent" />
             <span>{item}</span>
           </li>
         ))}
       </ul>
-      <p className="legenda mt-auto pt-4 text-ink">Clique para abrir</p>
+      {projeto.detalhes.length > DETALHES_NO_VERSO && (
+        <p className="legenda mt-2 pl-4">+{projeto.detalhes.length - DETALHES_NO_VERSO} no detalhe</p>
+      )}
+      <p className="legenda mt-auto pt-4 text-ink">Toque ou clique para abrir</p>
     </div>
   );
 }
